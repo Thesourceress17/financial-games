@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="משחקים חינוכיים בשוק ההון לכיתות ח'-ט'">
+    <title>שוק ההון שלי - משחקים חינוכיים</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/games.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <h2>טוען את המשחקים...</h2>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div id="app" class="app-container">
+        
+        <!-- Navigation Bar -->
+        <nav class="navbar">
+            <div class="nav-content">
+                <div class="nav-brand">
+                    <i class="fas fa-chart-line"></i>
+                    <h1>שוק ההון שלי</h1>
+                </div>
+                <div class="nav-actions">
+                    <button id="teacher-btn" class="btn-icon" aria-label="דשבורד מורה">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        <span>דשבורד מורה</span>
+                    </button>
+                    <button id="info-btn" class="btn-icon" aria-label="מידע">
+                        <i class="fas fa-info-circle"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Welcome Screen -->
+        <section id="welcome-screen" class="screen active">
+            <div class="welcome-container">
+                <div class="welcome-hero">
+                    <div class="hero-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h1 class="hero-title">ברוכים הבאים לעולם שוק ההון!</h1>
+                    <p class="hero-subtitle">למדו על השקעות, מניות ומדדים דרך 5 משחקים מרתקים</p>
+                </div>
+                
+                <div class="welcome-form">
+                    <div class="form-group">
+                        <label for="student-name">מה שמך?</label>
+                        <input 
+                            type="text" 
+                            id="student-name" 
+                            placeholder="הזינו את שמכם המלא"
+                            aria-label="שם התלמיד"
+                            required
+                        >
+                    </div>
+                    <button id="start-btn" class="btn-primary btn-large">
+                        <span>בואו נתחיל!</span>
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                </div>
+
+                <div class="welcome-stats">
+                    <div class="stat-item">
+                        <i class="fas fa-gamepad"></i>
+                        <div>
+                            <strong>5</strong>
+                            <span>משחקים</span>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-layer-group"></i>
+                        <div>
+                            <strong>3</strong>
+                            <span>רמות קושי</span>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-users"></i>
+                        <div>
+                            <strong>זוגי</strong>
+                            <span>וקבוצתי</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard Screen -->
+        <section id="dashboard-screen" class="screen">
+            <div class="dashboard-container">
+                <div class="dashboard-header">
+                    <div class="user-welcome">
+                        <h2>שלום <span id="user-name-display"></span>!</h2>
+                        <p>בחרו משחק ותתחילו ללמוד 🚀</p>
+                    </div>
+                    <div class="user-progress">
+                        <div class="progress-item">
+                            <i class="fas fa-trophy"></i>
+                            <span id="completed-games">0/5</span>
+                            <small>משחקים הושלמו</small>
+                        </div>
+                        <div class="progress-item">
+                            <i class="fas fa-star"></i>
+                            <span id="total-score">0</span>
+                            <small>ניקוד כולל</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="games-grid">
+                    
+                    <!-- Game 1: Stock Simulator -->
+                    <div class="game-card" data-game="stock-simulator">
+                        <div class="game-card-header">
+                            <div class="game-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="game-badge">
+                                <i class="fas fa-fire"></i>
+                                פופולרי
+                            </div>
+                        </div>
+                        <div class="game-card-body">
+                            <h3>סימולטור בורסה</h3>
+                            <p>קבלו תקציב וירטואלי ובנו תיק השקעות משלכם! עקבו אחר מחירי המניות בזמן אמת וקבלו החלטות חכמות.</p>
+                            <div class="game-skills">
+                                <span class="skill-tag"><i class="fas fa-percentage"></i> אחוזים</span>
+                                <span class="skill-tag"><i class="fas fa-chart-area"></i> גרפים</span>
+                                <span class="skill-tag"><i class="fas fa-calculator"></i> חישוב רווח</span>
+                            </div>
+                        </div>
+                        <div class="game-card-footer">
+                            <div class="game-levels">
+                                <span class="level-star" data-level="easy">
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                <span class="level-star" data-level="medium">
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                <span class="level-star" data-level="hard">
+                                    <i class="fas fa-star"></i>
+                                </span>
+                            </div>
+                            <button class="btn-play" data-game="stock-simulator">
+                                <span>שחקו עכשיו</span>
+                                <i class="fas fa-play"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Game 2: Chart Analysis -->
+                    <div class="game-card" data-game="chart-analysis">
+                        <div class="game-card-header">
+                            <div class="game-icon" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                        </div>
+                        <div class="game-card-body">
+                            <h3>קורא המגמות</h3>
+                            <p>נתחו גרפים פיננסיים אמיתיים! זהו מגמות, חשבו אחוזי שינוי והשוו ביצועים של מניות שונות.</p>
+                            <div class="game-skills">
+                                <span class="skill-tag"><i class="fas fa-search"></i> ניתוח נתונים</span>
+                                <span class="skill-tag"><i class="fas fa-balance-scale"></i> השוואה</span>
+                                <span class="skill-tag"><i class="fas fa-brain"></i> חשיבה</span>
+                            </div>
+                        </div>
+                        <div class="game-card-footer">
+                            <div class="game-levels">
+                                <span class="level-star" data-level="easy">
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                <span class="level-star" data-level="medium">
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                <span class="level-star" data-level="hard">
+                                    <i class="fas fa-star"></i>
+                                </span>
+                            </div>
+                            <button class="btn-play" data-game="chart-analysis">
+                                <span>שחקו עכשיו</span>
+                                <i class="fas fa-play"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Game 3: Index Puzzles -->
+                    <div class="game-card" data-game="index-puzzles">
+                        <div class="game-card-header">
+                            <div class="game-icon" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                                <i class="fas fa-puzzle-piece"></i>
+                            </div>
+                        </div>
+                        <div class="game-card-body">
+                            <h3>חידות המדד</h3>
+                            <p>פתרו חידות לוגיות-מתמטיות על מדדי בורסה! חשבו ריבית דריבית וחישובים פיננסיים מורכבים.</p>
+                            <div class="game-skills">
+                                <span class="skill-tag"><i class="fas fa-percent"></i> ריבית דריבית</span>
+                                <span class="skill-tag"><i class="fas fa-lightbulb"></i> חשיבה לוגית</span>
+                                <span class="skill-tag"><i class="fas fa-equals"></i> מתמטיקה</span>
+                            </div>
+                        </div>
+                        <div class="game-card-footer">
+                            <div class="game-levels">
+                                <span class="level-star" data-level="easy">
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                <span class="level-star" data-level="medium">
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                <span class="level-star" data-level="hard">
+                                    <i class="fas fa-star"></i>
+                                </span>
+                            </div>
+                            <button class="btn-play" data-game="index-puzzles">
+                                <span>שחקו עכשיו</span>
+                                <i class="fas fa-play"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Game 4: Portfolio Battle -->
+                    <div class="game-card" data-game="portfolio-battle">
+                        <div class="game-card-header">
+                            <div class="game-icon" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <div class="game-badge multiplayer">
+                                <i class="fas fa-users"></i>
+                                קבוצתי
+                            </div>
+                        </div>
+                        <div class="game-card-body">
+                            <h3>מלחמת התיקים</h3>
+                            <p>תחרות קבוצתית מרתקת! בנו תיק השקעות ביחד, התמודדו עם אירועי שוק והגיעו למקום הראשון!</p>
+                            <div class="game-skills">
+                                <span class="skill-tag"><i class="fas fa-users-cog"></i> שיתוף פעולה</span>
+                                <span class="skill-tag"><i class="fas fa-bolt"></i> החלטות מהירות</span>
+                                <span class="skill-tag"><i class="fas fa-chess"></i> אסטרטגיה</span>
+                            </div>
+                        </div>
+                        <div class="game-card-footer">
+                            <div class="game-levels">
+                                <span class="level-star" data-level="easy">
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                <span class="level-star" data-level="medium">
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                <span class="level-star" data-level="hard">
+                                    <i class="fas fa-star"></i>
+                                </span>
+                            </div>
+                            <button class="btn-play" data-game="portfolio-battle">
+                                <span>שחקו עכשיו</span>
+                                <i class="fas fa-play"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Game 5: Investor Dilemma -->
+                    <div class="game-card" data-game="investor-dilemma">
+                        <div class="game-card-header">
+                            <div class="game-icon" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
+                                <i class="fas fa-question-circle"></i>
+                            </div>
+                        </div>
+                        <div class="game-card-body">
+                            <h3>דילמות המשקיע</h3>
+                            <p>התמודדו עם דילמות השקעה אמיתיות! קבלו החלטות מושכלות ולמדו על סיכון, תשואה ואסטרטגיות.</p>
+                            <div class="game-skills">
+                                <span class="skill-tag"><i class="fas fa-crosshairs"></i> קבלת החלטות</span>
+                                <span class="skill-tag"><i class="fas fa-exclamation-triangle"></i> ניהול סיכונים</span>
+                                <span class="skill-tag"><i class="fas fa-user-tie"></i> חשיבה אסטרטגית</span>
+                            </div>
+                        </div>
+                        <div class="game-card-footer">
+                            <div class="game-levels">
+                                <span class="level-star" data-level="easy">
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                <span class="level-star" data-level="medium">
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                <span class="level-star" data-level="hard">
+                                    <i class="fas fa-star"></i>
+                                </span>
+                            </div>
+                            <button class="btn-play" data-game="investor-dilemma">
+                                <span>שחקו עכשיו</span>
+                                <i class="fas fa-play"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Game Screen (Dynamic Content) -->
+        <section id="game-screen" class="screen">
+            <div class="game-container">
+                <div class="game-header">
+                    <button id="back-to-dashboard" class="btn-back">
+                        <i class="fas fa-arrow-right"></i>
+                        <span>חזרה לדשבורד</span>
+                    </button>
+                    <div class="game-info">
+                        <h2 id="current-game-title"></h2>
+                        <div class="game-level-selector">
+                            <button class="level-btn" data-level="easy">
+                                <i class="fas fa-star"></i>
+                                קל
+                            </button>
+                            <button class="level-btn" data-level="medium">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                בינוני
+                            </button>
+                            <button class="level-btn" data-level="hard">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                קשה
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div id="game-content" class="game-content">
+                    <!-- Game content will be loaded here dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Teacher Dashboard Screen -->
+        <section id="teacher-screen" class="screen">
+            <div class="teacher-container">
+                <div class="teacher-header">
+                    <button id="back-from-teacher" class="btn-back">
+                        <i class="fas fa-arrow-right"></i>
+                        <span>חזרה</span>
+                    </button>
+                    <h2>דשבורד מורה</h2>
+                    <div class="teacher-actions">
+                        <button id="export-data-btn" class="btn-secondary">
+                            <i class="fas fa-download"></i>
+                            ייצא נתונים
+                        </button>
+                        <button id="open-sheets-btn" class="btn-secondary">
+                            <i class="fab fa-google"></i>
+                            פתח Google Sheets
+                        </button>
+                    </div>
+                </div>
+                <div class="teacher-content">
+                    <div class="stats-overview">
+                        <div class="stat-card">
+                            <i class="fas fa-users"></i>
+                            <div>
+                                <h3 id="total-students">0</h3>
+                                <p>תלמידים סה"כ</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-gamepad"></i>
+                            <div>
+                                <h3 id="total-games-played">0</h3>
+                                <p>משחקים שוחקו</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-star"></i>
+                            <div>
+                                <h3 id="average-score">0</h3>
+                                <p>ציון ממוצע</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-trophy"></i>
+                            <div>
+                                <h3 id="completion-rate">0%</h3>
+                                <p>אחוז השלמה</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="teacher-charts">
+                        <div class="chart-container">
+                            <h3>ציונים לפי משחק</h3>
+                            <canvas id="scores-by-game-chart"></canvas>
+                        </div>
+                        <div class="chart-container">
+                            <h3>התפלגות רמות קושי</h3>
+                            <canvas id="difficulty-distribution-chart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="students-table-container">
+                        <div class="table-header">
+                            <h3>נתוני תלמידים</h3>
+                            <input 
+                                type="text" 
+                                id="search-student" 
+                                placeholder="חיפוש תלמיד..."
+                                class="search-input"
+                            >
+                        </div>
+                        <div class="table-wrapper">
+                            <table class="students-table" id="students-table">
+                                <thead>
+                                    <tr>
+                                        <th>שם תלמיד</th>
+                                        <th>משחק</th>
+                                        <th>רמה</th>
+                                        <th>ציון</th>
+                                        <th>תאריך</th>
+                                        <th>זמן משחק</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="no-data">
+                                        <td colspan="6">אין נתונים להצגה</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Modals -->
+    <div id="teacher-login-modal" class="modal">
+        <div class="modal-content">
+            <h3>כניסה לדשבורד מורה</h3>
+            <p>הזינו את סיסמת המורה</p>
+            <input 
+                type="password" 
+                id="teacher-password" 
+                placeholder="סיסמה"
+                class="modal-input"
+            >
+            <div class="modal-actions">
+                <button id="cancel-teacher-login" class="btn-secondary">ביטול</button>
+                <button id="confirm-teacher-login" class="btn-primary">כניסה</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="info-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" id="close-info-modal">
+                <i class="fas fa-times"></i>
+            </button>
+            <h3>אודות המשחקים</h3>
+            <p>פלטפורמת למידה אינטראקטיבית לחינוך פיננסי המיועדת לתלמידי כיתות ח'-ט'.</p>
+            <div class="info-list">
+                <div class="info-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>5 משחקים חינוכיים מגוונים</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>3 רמות קושי מדורגות</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>למידה באמצעות עשייה</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>מעקב אחר התקדמות</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Files -->
+    <script src="js/app.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/google-sheets.js"></script>
+    <script src="js/teacher-panel.js"></script>
+    <script src="js/games/game1-stock-simulator.js"></script>
+    <script src="js/games/game2-chart-analysis.js"></script>
+    <script src="js/games/game3-index-puzzles.js"></script>
+    <script src="js/games/game4-portfolio-battle.js"></script>
+    <script src="js/games/game5-investor-dilemma.js"></script>
+
+</body>
+</html>
